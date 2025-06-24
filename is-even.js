@@ -22,7 +22,6 @@ function isEven(n) {
 
 
 
-
 console.log(isEven(4));
 console.log(isEven(9));
 console.log(isEven(98765678987676));
