@@ -16,6 +16,8 @@ console.log(songDescriptions);
 
 
 
+//________________________________________________________________________________________________________
+/*
 const plugins = [
     { name: "LA-2A", type: "compressor", brand: "UAD", price: 149 },
     { name: "Pultec EQP-1A", type: "EQ", brand: "UAD", price: 129 },
@@ -43,3 +45,41 @@ console.log(onlyUadSentence);
 // filter returns only the elements that meet your condition. ap transforms every element into something new. 
 // When you chain them, you first narrow down the data with filter, then shape it with map
 // Using them together can allow you to take a large dataset, pick out just what you need, and format it exactly how you want: all in one smooth, readable line.
+*/
+
+
+//________________________________________________________________________________________________________
+
+const plugins = [
+  { name: "LA-2A", type: "compressor", brand: "UAD", price: 149 },
+  { name: "Pultec EQP-1A", type: "EQ", brand: "UAD", price: 129 },
+  { name: "FabFilter Pro-Q3", type: "EQ", brand: "FabFilter", price: 179 },
+  { name: "Valhalla Room", type: "reverb", brand: "Valhalla", price: 50 },
+];
+
+// 🧪 Task 1: Use reduce to get the total cost of all plugins
+const costAllPlugins = plugins.reduce((accum, plugin) => accum + plugin.price, 0)
+
+console.log(costAllPlugins);
+
+
+// 🧪 Task 2: Use reduce to count how many plugins each brand has
+const howManyEachBrand = plugins.reduce((accum, plugin) => {
+  if (accum[plugin.brand]) {
+    accum[plugin.brand] += 1
+  } else {
+    accum[plugin.brand] = 1
+  }
+  return accum;
+}, {});
+
+console.log(howManyEachBrand);
+
+// OR
+
+const howManyEachBrandRefactored = plugins.reduce((accum, plugin) => {
+  accum[plugin.brand] = (accum[plugin.brand] || 0) + 1;
+  return accum;
+}, {});
+
+console.log(howManyEachBrandRefactored);
