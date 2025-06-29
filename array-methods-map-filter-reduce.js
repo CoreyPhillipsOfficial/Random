@@ -49,7 +49,7 @@ console.log(onlyUadSentence);
 
 
 //________________________________________________________________________________________________________
-
+/*
 const plugins = [
   { name: "LA-2A", type: "compressor", brand: "UAD", price: 149 },
   { name: "Pultec EQP-1A", type: "EQ", brand: "UAD", price: 129 },
@@ -83,3 +83,65 @@ const howManyEachBrandRefactored = plugins.reduce((accum, plugin) => {
 }, {});
 
 console.log(howManyEachBrandRefactored);
+*/
+
+
+//________________________________________________________________________________________________________
+// You’re building a simple backend script for a plugin dashboard to display stats and summaries from a producer’s plugin collection.
+
+const plugins = [
+  { name: "LA-2A", type: "compressor", brand: "UAD", price: 149 },
+  { name: "Pultec EQP-1A", type: "EQ", brand: "UAD", price: 129 },
+  { name: "FabFilter Pro-Q3", type: "EQ", brand: "FabFilter", price: 179 },
+  { name: "Valhalla Room", type: "reverb", brand: "Valhalla", price: 50 },
+  { name: "RC-20", type: "saturation", brand: "XLN Audio", price: 99 },
+  { name: "SketchCassette", type: "saturation", brand: "Aberrant DSP", price: 40 },
+];
+
+// 🧪 Task 1: Use filter to get all saturation plugins
+const saturationPlugins = plugins.filter(plugin => plugin.type === 'saturation');
+console.log(saturationPlugins);
+
+
+// 🧪 Task 2: Use map to create a display list of plugin names and prices
+// Format: "Plugin Name - $Price"
+const pluginList = plugins.map(plugin => `${plugin.name} - $${plugin.price}`);
+console.log(pluginList);
+
+
+// 🧪 Task 3: Use reduce to calculate the total spent on plugins
+const totalSpentOnPlugins = plugins.reduce((acc, curr) => acc + curr.price, 0);
+console.log(totalSpentOnPlugins);
+
+
+
+// 🧪 Task 4: Use reduce to create an object that shows how many plugins each type has
+const numberOfEachPluginType = plugins.reduce((acc, curr) => {
+  // console.log("Current plugin:", curr.name);
+  // console.log("Before:", JSON.stringify(acc));
+
+  acc[curr.type] = (acc[curr.type] || 0) + 1
+  // console.log("After:", JSON.stringify(acc));
+  // console.log("------");
+
+  return acc
+}, {});
+console.log(numberOfEachPluginType);
+
+
+console.log('-----------------------------------');
+
+
+const dog = { breed: "Labrador" };
+const prop = "breed";
+console.log(dog[prop]); // Should print "Labrador"
+
+const user = {};
+const field = "username";
+user[field] = "coreyDev";
+console.log(user); // Should print { username: "coreyDev" }
+
+const counter = {};
+const item = "saturation";
+counter[item] = (counter[item] || 0) + 1;
+console.log(counter); // { saturation: 1 }
