@@ -88,7 +88,7 @@ console.log(howManyEachBrandRefactored);
 
 //________________________________________________________________________________________________________
 // You’re building a simple backend script for a plugin dashboard to display stats and summaries from a producer’s plugin collection.
-
+/*
 const plugins = [
   { name: "LA-2A", type: "compressor", brand: "UAD", price: 149 },
   { name: "Pultec EQP-1A", type: "EQ", brand: "UAD", price: 129 },
@@ -145,3 +145,43 @@ const counter = {};
 const item = "saturation";
 counter[item] = (counter[item] || 0) + 1;
 console.log(counter); // { saturation: 1 }
+*/
+
+//________________________________________________________________________________________________________
+// Track plugin sales across multiple producers. Help generate a quick stats dashboard from raw data.
+
+const pluginSales = [
+  { plugin: "LA-2A", producer: "Corey", price: 149 },
+  { plugin: "Pultec EQP-1A", producer: "Mariquis", price: 129 },
+  { plugin: "FabFilter Pro-Q3", producer: "Corey", price: 179 },
+  { plugin: "Valhalla Room", producer: "Anna", price: 50 },
+  { plugin: "RC-20", producer: "Mariquis", price: 99 },
+  { plugin: "SketchCassette", producer: "Corey", price: 40 },
+];
+
+// 🔹 1. Use filter to get all sales made by Corey
+const producerCorey = pluginSales.filter(plugin => plugin.producer === 'Corey')
+console.log(producerCorey);
+
+// 🔹 2. Use map to turn those sales into display strings like: "Corey sold LA-2A for $149"
+const pluginSalesSentences = producerCorey.map(plugin => `${plugin.producer} sold ${plugin.plugin} for $${plugin.price}`)
+console.log(pluginSalesSentences);
+
+// 🔹 3. Use reduce to calculate the total revenue per producer
+const totalRevPerProducer = pluginSales.reduce((acc, plugin) => {
+  acc[plugin.producer] = (acc[plugin.producer] || 0) + plugin.price
+
+  return acc
+}, {})
+console.log(totalRevPerProducer);
+
+
+
+// 🔹 4. Use forEach to print each producer’s name and total revenue to the console, like:
+// Corey earned $368
+// Mariquis earned $228
+// Anna earned $50
+
+Object.entries(totalRevPerProducer).forEach(([producer, total]) => {
+  console.log(`${producer} earned $${total}`);
+});
