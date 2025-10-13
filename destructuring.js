@@ -1,3 +1,4 @@
+
 const earnings = {
     Corey: 368,
     Mariquis: 228,
